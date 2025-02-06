@@ -12,7 +12,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 
-import { Trash2 } from "lucide-react"
+import { Trash2, UserRoundPlus } from "lucide-react"
 
 import { FormEvent, useEffect, useRef, useState } from "react"
 import { app } from "../api"
@@ -72,9 +72,7 @@ export default function TableComponent() {
     async function handleDelete(id:string) {
       try {
         await app.delete(`/delete-user?key=f7c3e3a2-9d4b-4b9e-b51d-78a1b8c5a067&id=${id}`)
-        const allUsers = users.filter((user) => {
-          user.id !== id
-        })
+        const allUsers = users.filter((user) => user.id !== id);
 
         setUsers(allUsers);
         loadUsers();
@@ -104,7 +102,7 @@ export default function TableComponent() {
           </form>
         </CardContent>
         <CardFooter className="flex justify-center">
-          <Button type="submit" onClick={handleSubmit} variant={"default"} className="w-full">Enviar</Button>
+          <Button type="submit" onClick={handleSubmit} variant={"default"} className="w-full"><UserRoundPlus/>Enviar</Button>
         </CardFooter>
       </Card>
 
