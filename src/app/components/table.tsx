@@ -16,7 +16,8 @@ import { Trash2 } from "lucide-react"
 
 import { FormEvent, useEffect, useRef, useState } from "react"
 import { app } from "../api"
-import { config } from "dotenv"
+import { config } from 'dotenv'
+const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
 interface UserProps {
   id: string,
@@ -26,17 +27,13 @@ interface UserProps {
   createAt: string
 }
 
-
 export default function TableComponent() {
-  
+  config();
 
   const [users, setUsers] = useState<UserProps[]>([])
-
   async function loadUsers() {
-    try {
-      config();
-
-      const response = await app.get(`/users?key=f7c3e3a2-9d4b-4b9e-b51d-78a1b8c5a067`);
+    try {      
+      const response = await app.get(`/users?key=${apiKey}`);
       setUsers(response.data.data);
     } catch (error) {
       console.log(error)
@@ -56,7 +53,7 @@ export default function TableComponent() {
       const email = emailRef.current?.value;
       console.log(name,email)
       if(!name || !email) return;
-      const response = await app.post(`/create-user?key=f7c3e3a2-9d4b-4b9e-b51d-78a1b8c5a067`, {
+      const response = await app.post(`/create-user?key=${apiKey}`, {
           name: name,
           email: email
       })
