@@ -102,7 +102,7 @@ export default function TableComponent() {
           </form>
         </CardContent>
         <CardFooter className="flex justify-center">
-          <Button type="submit" onClick={handleSubmit} variant={"default"} className="w-full"><UserRoundPlus/>Enviar</Button>
+          <Button type="submit" onClick={handleSubmit} variant={"default"} className="w-full" key={'submit'}><UserRoundPlus/>Enviar</Button>
         </CardFooter>
       </Card>
 
